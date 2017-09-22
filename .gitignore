@@ -1,0 +1,11 @@
+*
+!.gitignore
+!resources
+!scripts
+!src
+!*.html
+!*.js
+*.gen.js
+!*.cpp
+!*.csv
+!Makefile
