@@ -19,6 +19,27 @@ function draw_axes(ctxt, length) {
 	let bottom_right = [right(length), right(length)];
 	draw_line(ctxt, origin, top_left);
 	draw_line(ctxt, origin, bottom_right);
+	let unit_font_size = 15;
+	draw_text(ctxt, unit_font_size, top_left, 3, '1.0');
+	draw_text(ctxt, unit_font_size, bottom_right, 2, '1.0');
+	let label_font_size = 20;
+	let x_label = [origin[0] + (bottom_right[0] - origin[0]) / 2, origin[1]];
+	let y_label = [origin[0], (origin[1] - top_left[1]) / 2 + top_left[1]];
+	draw_text(ctxt, label_font_size, x_label, 4, 'x');
+	draw_text(ctxt, label_font_size, y_label, 1, 'y');
+}
+
+function draw_text(ctxt, font_size, pt, quad, text) {
+	ctxt.font = font_size + 'px serif';
+	if(quad == 0)
+		ctxt.fillText(text, pt[0], pt[1]);
+	else if(quad < 3) {
+		let text_offset = quad == 1 ? -font_size : font_size;
+		ctxt.fillText(text, pt[0] + text_offset, pt[1]);
+	} else {
+		let text_offset = quad == 3 ? -font_size : font_size;
+		ctxt.fillText(text, pt[0], pt[1] + text_offset);
+	}
 }
 
 function draw_line(ctxt, begin, end) {
