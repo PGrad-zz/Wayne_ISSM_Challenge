@@ -24,8 +24,8 @@ function draw_scene () {
 		return dist(pt.get(0),pt.get(1));
 	});
 	draw_pt(ptA, "red");
-	draw_pt(pts.get(B_index),"blue");
-	draw_pt(pts.get(C_index),"green");
+	draw_pt(pts.get(B_index),"#00B3FF"); //blue
+	draw_pt(pts.get(C_index),"#5EFF00"); //green
 	draw_all_else(pts, B_index, C_index);
 };
 
