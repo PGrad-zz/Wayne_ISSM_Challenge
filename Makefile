@@ -1,4 +1,5 @@
+FLAGS=--bind -O3 -s ASYNCIFY=1 -s RESERVED_FUNCTION_POINTERS=1
 all:
-	emcc --bind -o ./scripts/load_file.gen.js --preload-file ./resources ./src/read.cpp && chmod 644 scripts/load_file.* && mv -f ./scripts/load_file.gen.data .
+	em++ ${FLAGS} -o ./scripts/load_file.gen.js ./src/read.cpp && chmod 644 scripts/load_file.* && mv -f ./scripts/load_file.gen.js.mem .
 clean:
-	rm -f ./scripts/load_file.gen.js && rm -f ./load_file.gen.data
+	rm -f ./load_file.gen.js.mem ./scripts/load_file.gen.js

@@ -53,9 +53,9 @@ function draw_pt(pt, color) {
 	draw_point(ctxt, pt.get(0), pt.get(1), space_info, point_options);
 }
 
-
-Module["onRuntimeInitialized"] = () => {
-	pts = Module.load_points("./resources/Data.csv");
+function init(_pts) {
+	//Emscripten is a pathway to many abilities some would consider... unnatural.
+	pts = new Module.PointList(_pts);
 	ctxt = get_canvas_ctxt();
 	if(!ctxt)
 		return;
@@ -63,4 +63,9 @@ Module["onRuntimeInitialized"] = () => {
 	window.addEventListener("resize", () => {
 		draw_scene();
 	});
+}
+
+Module["onRuntimeInitialized"] = () => {
+	let initPtr = Runtime.addFunction(init);
+	Module.load_points("http://www.ics.uci.edu/~wayne/research/students/ISSM/Data.csv", "./resources/Data.csv", initPtr);
 };
