@@ -64,8 +64,10 @@ function init(_pts) {
 
 Module["onRuntimeInitialized"] = () => {
 	let initPtr = Runtime.addFunction(init);
-	Module.load_points("http://www.ics.uci.edu/~wayne/research/students/ISSM/Data.csv", "./resources/Data.csv", initPtr);
+	let url = "http://www.ics.uci.edu/~wayne/research/students/ISSM/Data.csv"
+	let nocacheurl = url + "?x=filemtime('" + url +"')"
+	Module.load_points(nocacheurl, "./resources/Data.csv", initPtr);
 	window.addEventListener("resize", () => {
-		Module.load_points("http://www.ics.uci.edu/~wayne/research/students/ISSM/Data.csv", "./resources/Data.csv", initPtr);
+		Module.load_points(nocacheurl, "./resources/Data.csv", initPtr);
 	});
 };
