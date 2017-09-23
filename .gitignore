@@ -7,5 +7,4 @@
 !*.js
 *.gen.js
 !*.cpp
-!*.csv
 !Makefile

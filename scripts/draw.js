@@ -72,7 +72,7 @@ function to_screen(pt_x, pt_y, screen_length, units) {
 	let space_extent = EXTENT * screen_length;
 	let space_offset = OFFSET * screen_length;
 	let unit = space_extent / units;
-	return [pt_x * unit + space_offset, pt_y * unit + space_offset];
+	return [pt_x * unit + space_offset, space_offset + space_extent - (pt_y * unit)];
 }
 
 function left(x) {

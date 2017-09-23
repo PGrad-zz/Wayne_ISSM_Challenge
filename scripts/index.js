@@ -60,12 +60,12 @@ function init(_pts) {
 	if(!ctxt)
 		return;
 	draw_scene();
-	window.addEventListener("resize", () => {
-		draw_scene();
-	});
 }
 
 Module["onRuntimeInitialized"] = () => {
 	let initPtr = Runtime.addFunction(init);
 	Module.load_points("http://www.ics.uci.edu/~wayne/research/students/ISSM/Data.csv", "./resources/Data.csv", initPtr);
+	window.addEventListener("resize", () => {
+		Module.load_points("http://www.ics.uci.edu/~wayne/research/students/ISSM/Data.csv", "./resources/Data.csv", initPtr);
+	});
 };
